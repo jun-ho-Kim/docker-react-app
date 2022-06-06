@@ -1,13 +1,12 @@
-sudo: required
+--- 
+after_success: 
+  - "echo \"Test Success wow\""
+before_install: 
+  - "echo \"start Creating an image with dockerfile\""
+  - "docker build -t junho/build_react_app -f Dockerfile.dev"
 language: generic
+script: 
+  - "docker run -e CI=true junho/build_react_app npm run test -- --coverage"
 services: 
   - docker
-before_install: 
-  - echo "start Creating an image with dockerfile"
-  - docker build -t junho/build_react_app -f Dockerfile.dev
-
-script:
-  - docker run -e CI=true junho/build_react_app npm run test -- --coverage
-
-after_success:
-  - echo "Test Success wow"
+sudo: required
