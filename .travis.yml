@@ -10,4 +10,4 @@ script:
   - docker run -e CI=true junho/build_react_app npm run test -- --coverage
 
 after_success:
-  - echo "Test Success"
+  - echo "Test Success wow"
