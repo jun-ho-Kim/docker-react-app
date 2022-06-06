@@ -1,0 +1,13 @@
+sudo: required
+language: generic
+services: 
+  - docker
+before_install: 
+  - echo "start Creating an image with dockerfile"
+  - docker build -t junho/build_react_app -f Dockerfile.dev
+
+script:
+  - docker run -e CI=true junho/build_react_app npm run test -- --coverage
+
+after_success:
+  - echo: "Test Success"
